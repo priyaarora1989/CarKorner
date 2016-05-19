@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Wipro/Desktop/Java/jar/javax.servlet-api-3.0.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Wipro/Desktop/Java/jar/servlet-api-2.5-6.1.4.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>
