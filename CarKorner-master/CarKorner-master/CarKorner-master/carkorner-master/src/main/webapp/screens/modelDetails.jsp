@@ -49,7 +49,7 @@
 				<td> <% car = (Car) request.getAttribute("car"); %>
 					<%! ArrayList<String> list = new ArrayList<String>();
 					 %>				
-					<%list = car.getColorName(); 
+					<% list = car.getColorName(); 
 						Iterator<String> it = list.iterator();
 						while(it.hasNext())
 						{

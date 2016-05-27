@@ -1,6 +1,8 @@
 package com.dishtech.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.dishtech.beans.Car;
 import com.dishtech.beans.UsedCar;
@@ -45,10 +47,19 @@ public class CarService implements ICarService {
 		return car;
 	}
 	
-	public int sellCar(UsedCar usedcar)
+	public int sellCar(Car car) throws SQLException, ClassNotFoundException
 	{
 		CarDAO cardao = new CarDAO();
-		cardao.sellCar(usedcar);
-		return 1;
+		cardao.getConnection();
+		int x = cardao.sellCar(car);
+		return x;
+	}
+	
+	public List<UsedCar> buyUsedCar(String carName,Long maxprice,String city) throws SQLException, ClassNotFoundException{
+		
+			CarDAO cd = new CarDAO();
+			cd.getConnection();
+			ArrayList<UsedCar> list = (ArrayList<UsedCar>) cd.buyUsedCar(carName,city);
+		return list ;		
 	}
 }

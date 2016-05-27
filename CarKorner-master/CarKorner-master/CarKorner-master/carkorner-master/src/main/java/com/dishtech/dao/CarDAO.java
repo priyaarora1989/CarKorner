@@ -2,6 +2,9 @@ package com.dishtech.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import com.dishtech.beans.Car;
 import com.dishtech.beans.Model;
 import com.dishtech.beans.Specifications;
@@ -12,12 +15,12 @@ public class CarDAO implements ICarDAO{
 	Connection con;
 	PreparedStatement ps;
 	ResultSet rs;
+	
 	Car car = new Car();
 	
 	@SuppressWarnings("null")
 	public Car searchCars(String name) throws ClassNotFoundException, SQLException{
-		
-		
+				
 		ArrayList<Model> list = new ArrayList<Model>();
 		
 		String carName = name;
@@ -244,18 +247,65 @@ public class CarDAO implements ICarDAO{
 		return car ;
 	}
 	
-	public int sellCar(UsedCar usedcar)
+	public int sellCar(Car car) throws SQLException
 	{
-		UsedCar uc = new UsedCar();
-		uc=usedcar;
+		ArrayList<UsedCar> list = car.getUsedcar();
+		Iterator<UsedCar> it = list.iterator() ;
+		String carName=null;
+		String color= null;
+		String city=null;
+
+		long price = 0,modelYear=0;
 		
-		uc.getCarName();
-		System.out.println("carname is :" +uc.getCarName());
+		while(it.hasNext())
+		{
+			System.out.println(" enter while ");
+			UsedCar usedcar = it.next();
+			
+			carName = usedcar.getCarName();
+			color=usedcar.getColor();
+			city=usedcar.getCity();
+			price=usedcar.getPrice();
+			modelYear=usedcar.getModelYear();
+		}
+		System.out.println("-- out while ---");
+		ps=con.prepareStatement("insert into carkorner.usedcar(carname,price,color,city,modelYear) values(?,?,?,?,?)");
+		ps.setString(1,carName);
+		ps.setLong(2,price);
+		ps.setString(3,color);
+		ps.setString(4,city);
+		ps.setLong(5,modelYear);
 		
-		return 0;
+		ps.executeUpdate();
 		
+		if(ps!=null)
+		{
+			return 1;
+		}
+		else 
+			return 0;
 	}
 	
+	public List<UsedCar> buyUsedCar(String carName,String city) throws SQLException{
+		ArrayList<UsedCar> list = new ArrayList<UsedCar>();
+		UsedCar car = new UsedCar();
+		ps=con.prepareStatement("select * from carkorner.usedcar where carName=?");
+		ps.setString(1,carName);
+		rs= ps.executeQuery();
+		while(rs.next())
+		{
+			System.out.println("enter while " +rs.getString(6));
+			if(rs.getString(3).equalsIgnoreCase(carName)&&rs.getString(6).equalsIgnoreCase(city)){
+				car.setCarName(rs.getString(3));
+				System.out.println("carname is : " +car.getCarName());
+				car.setPrice(rs.getLong(4));
+			}
+			else
+				return null;
+		}
+		list.add(car);
+		return list;
+	}	
 	public void getConnection() throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.hsqldb.jdbc.JDBCDriver");
@@ -267,6 +317,4 @@ public class CarDAO implements ICarDAO{
 		System.out.println(" -- create statement ----");
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 }

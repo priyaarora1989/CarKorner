@@ -1,8 +1,12 @@
 package com.dishtech.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
+
+import org.omg.CORBA.Request;
 
 import com.dishtech.beans.Car;
 import com.dishtech.beans.UsedCar;
@@ -53,11 +57,15 @@ public class CarController {
 	 * The car details are stored in the database
 	 * 
 	 * @return
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void sellCar(String name, String color, Long price, String city, Long modelYear){
+	public int sellCar(String name, String color, Long price, String city, Long modelYear) throws SQLException, ClassNotFoundException{
 		
 		System.out.println("--- enter sell car in car controller-------");
 		UsedCar usedcar = new UsedCar();
+		ArrayList<UsedCar> usList = new ArrayList<UsedCar>();
+		Car car = new Car();
 		
 		usedcar.setCarName(name);
 		
@@ -71,8 +79,12 @@ public class CarController {
 		
 		System.out.println("--- values set successfully ---");
 		
+		usList.add(usedcar);
+		car.setUsedcar(usList);
+		
 		CarService carservice = CarService.getInstance();
-		carservice.sellCar(usedcar);
+		int x = carservice.sellCar(car);
+		return x; 
 		//Create the service object
 		//Pass the required parameters to create the usedCar object
 		//Pass the control from service class to DAO class to create the used car object
@@ -83,16 +95,28 @@ public class CarController {
 	 * 
 	 * The information will include
 	 * Budget and city
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 * 
 	 * 
 	 */
-	public List<UsedCar> buyUsedCar(){
+	public List<UsedCar> buyUsedCar(String carName,Long maxprice,String city) throws SQLException, ClassNotFoundException{
 		
+		CarService carservice = CarService.getInstance();
+		UsedCar usedcar = new UsedCar();
+		
+		if(carName==usedcar.getCarName());
+		{
+		List<UsedCar> list = new ArrayList<UsedCar>();
+		list = carservice.buyUsedCar(carName,maxprice, city);
+		System.out.println(" --- return to carcontroller -----");
+		return list;
+		}
 		//Create the service object.
 		//Pass the budget and city to the service class
 		//Pass the control from service to DAO class and based on budget and city, find the 
 		//cars from usedCars table which are in same city ans lies in the price range defined by the user
-		return null;
+		
 	}
 }
 

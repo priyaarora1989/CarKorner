@@ -1,6 +1,9 @@
 package com.dishtech.frontController;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +44,17 @@ public class SellBuyServlet extends HttpServlet {
 		CarController carcontroller = new CarController();
 		
 		System.out.println("-----object created ------");
-		carcontroller.sellCar(carName, carColor, carPrice, city, modelYear);
+		try {
+			int x = carcontroller.sellCar(carName, carColor, carPrice, city, modelYear);
+			RequestDispatcher rd = request.getRequestDispatcher("screens/sellcar.jsp");
+			rd.forward(request, response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

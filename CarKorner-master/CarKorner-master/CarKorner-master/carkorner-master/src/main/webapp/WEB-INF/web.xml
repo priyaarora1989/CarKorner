@@ -34,6 +34,12 @@
   	<description></description>
   	<servlet-class>com.dishtech.frontController.SellBuyServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>BuyServlet</servlet-name>
+  	<display-name>BuyServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.dishtech.frontController.BuyServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>SearchCarServlet</servlet-name>
   	<url-pattern>/SearchCarServlet</url-pattern>
@@ -53,6 +59,10 @@
   <servlet-mapping>
   	<servlet-name>SellBuyServlet</servlet-name>
   	<url-pattern>/SellBuyServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>BuyServlet</servlet-name>
+  	<url-pattern>/BuyServlet</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
   <welcome-file>screens/login.jsp</welcome-file>

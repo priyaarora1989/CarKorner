@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login</title>
 </head>
-
 <script type="text/javascript">
 
 function isEmpty()
@@ -27,6 +26,7 @@ else
 </script>
 
 <body bgcolor="lightblue">
+
 <form name="login" method="get" action="LoginServlet">
 <center>
 <br>
@@ -40,7 +40,6 @@ Password <input type="password" name="loginPassword" placeholder="Enter Password
  
  </center>
  
- 
 <!--  this should be the first page of the application. 
 
 There will be two textboxes,
@@ -52,7 +51,7 @@ and take the user to the search.jsp.
 If the user credentials do not match, a message will be displayed saying, username and password do not match.
 
 On the bottom of login button, there should be a link saying, 'If not an existing user, SignUp'. On the click of this
-link, the user shoudl be taken to the sign up page.
+link, the user should be taken to the sign up page.
 
  -->
  

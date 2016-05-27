@@ -13,8 +13,16 @@ public class Car {
 	private ArrayList<String> colorName = new ArrayList<String>();
 	private ArrayList<Boolean> feature = new ArrayList<Boolean>();
 	Specifications sp = new Specifications();
+	private ArrayList<UsedCar> usedcar = new ArrayList<UsedCar>();
 	
-	
+	public ArrayList<UsedCar> getUsedcar() {
+		return usedcar;
+	}
+
+	public void setUsedcar(ArrayList<UsedCar> usedcar) {
+		this.usedcar = usedcar;
+	}
+
 	public Specifications getSp() {
 		return sp;
 	}
@@ -50,7 +58,6 @@ public class Car {
 	public void setCarPrice(Float carPrice) {
 		this.carPrice = carPrice;
 	}
-
 
 	public void setColorName(ArrayList<String> colorName) {
 		this.colorName = colorName;
